@@ -121,11 +121,10 @@ class Kosmos2Processor(ProcessorMixin):
                 add_bos_token=add_bos_token,
                 add_eos_token=add_eos_token,
             )
-            # This is already treated when calling `preprocess_text` above.
-            add_special_tokens = False
+
             text_encoding = self.tokenizer(
                 text=text,
-                add_special_tokens=add_special_tokens,
+                add_special_tokens=False,  # This is already treated when calling `preprocess_text` above.
                 padding=padding,
                 truncation=truncation,
                 max_length=max_length,
