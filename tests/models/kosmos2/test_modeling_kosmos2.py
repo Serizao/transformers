@@ -486,7 +486,7 @@ class Kosmos2ModelIntegrationTest(unittest.TestCase):
 
         def run_example(prompt):
 
-            inputs = processor(text=prompt, images=image, return_tensors="pt")
+            inputs = processor(text=prompt, images=image, return_tensors="pt", add_eos_token=False)
 
             generation_outputs = model.generate(
                 pixel_values=inputs["pixel_values"],
