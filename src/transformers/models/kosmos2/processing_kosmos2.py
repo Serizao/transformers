@@ -112,15 +112,7 @@ class Kosmos2Processor(ProcessorMixin):
             encoding.update(image_encoding)
 
         if text is not None:
-            text = self.preprocess_text(
-                text,
-                images,
-                bboxes,
-                num_image_tokens=num_image_tokens,
-                add_special_tokens=add_special_tokens,
-                add_bos_token=add_bos_token,
-                add_eos_token=add_eos_token,
-            )
+            text = self.preprocess_text(text, images, bboxes, num_image_tokens=num_image_tokens)
 
             if add_special_tokens:
                 if add_bos_token:
