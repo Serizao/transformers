@@ -490,10 +490,10 @@ class Kosmos2ModelIntegrationTest(unittest.TestCase):
 
             generation_outputs = model.generate(
                 pixel_values=inputs["pixel_values"],
-                input_ids=inputs["input_ids"][:, :-1],
-                attention_mask=inputs["attention_mask"][:, :-1],
+                input_ids=inputs["input_ids"],
+                attention_mask=inputs["attention_mask"],
                 image_features=None,
-                image_features_mask=inputs["image_features_mask"][:, :-1],
+                image_features_mask=inputs["image_features_mask"],
                 use_cache=True,
                 max_new_tokens=128,
                 output_scores=True,
