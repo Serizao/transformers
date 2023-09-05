@@ -298,7 +298,7 @@ class Kosmos2Processor(ProcessorMixin):
 
             if add_special_tokens:
                 if add_bos_token:
-                    text = f"{self.tokenizer.bos_token} {text}"
+                    text = f"{self.tokenizer.bos_token}{text}"
                 if add_eos_token:
                     text = f"{text}{self.tokenizer.eos_token}"
 
