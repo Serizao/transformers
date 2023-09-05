@@ -475,7 +475,7 @@ class Kosmos2ModelIntegrationTest(unittest.TestCase):
 
     def test_snowman_image_captioning(self):
 
-        url = "https://huggingface.co/ydshieh/kosmos-2-patch14-224/resolve/main/snowman.png"
+        url = "https://huggingface.co/ydshieh/temp-testing-kosmos-2/resolve/main/snowman.png"
 
         image = Image.open(requests.get(url, stream=True).raw)
         image.save("new_image.jpg")

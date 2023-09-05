@@ -1815,8 +1815,8 @@ class Kosmos2ForConditionalGeneration(Kosmos2PreTrainedModel):
         >>> from PIL import Image
         >>> from transformers import AutoProcessor, Kosmos2ForConditionalGeneration
 
-        >>> model = Kosmos2ForConditionalGeneration.from_pretrained("ydshieh/kosmos-2-patch14-224")
-        >>> processor = AutoProcessor.from_pretrained("ydshieh/kosmos-2-patch14-224")
+        >>> model = Kosmos2ForConditionalGeneration.from_pretrained("ydshieh/temp-testing-kosmos-2")
+        >>> processor = AutoProcessor.from_pretrained("ydshieh/temp-testing-kosmos-2")
 
         >>> prompt = "<grounding> An image of"
         >>> image = Image.open("snowman.jpg")
