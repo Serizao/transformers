@@ -79,8 +79,7 @@ class Kosmos2Processor(ProcessorMixin):
         num_image_tokens: Optional[int] = 64,
         first_image_token_id: Optional[int] = None,
         add_special_tokens: bool = True,
-        add_bos_token: bool = True,
-        add_eos_token: bool = False,
+        add_eos_token: bool = True,
         padding: Union[bool, str, PaddingStrategy] = False,
         truncation: Union[bool, str, TruncationStrategy] = None,
         max_length: Optional[int] = None,
@@ -114,15 +113,12 @@ class Kosmos2Processor(ProcessorMixin):
         if text is not None:
             text = self.preprocess_text(text, images, bboxes, num_image_tokens=num_image_tokens)
 
-            if add_special_tokens:
-                if add_bos_token:
-                    text = f"{self.tokenizer.bos_token}{text}"
-                if add_eos_token:
-                    text = f"{text}{self.tokenizer.eos_token}"
+            if add_special_tokens and not add_eos_token:
+                text = f"{self.tokenizer.bos_token}{text}"
 
             text_encoding = self.tokenizer(
                 text=text,
-                add_special_tokens=False,  # This is already treated when calling `preprocess_text` above.
+                add_special_tokens=(add_special_tokens and add_eos_token),
                 padding=padding,
                 truncation=truncation,
                 max_length=max_length,
