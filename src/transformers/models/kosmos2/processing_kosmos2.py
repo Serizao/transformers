@@ -122,6 +122,12 @@ class Kosmos2Processor(ProcessorMixin):
                 add_eos_token=add_eos_token,
             )
 
+            if add_special_tokens:
+                if add_bos_token:
+                    text = f"{self.tokenizer.bos_token}{text}"
+                if add_eos_token:
+                    text = f"{text}{self.tokenizer.eos_token}"
+
             text_encoding = self.tokenizer(
                 text=text,
                 add_special_tokens=False,  # This is already treated when calling `preprocess_text` above.
@@ -232,9 +238,6 @@ class Kosmos2Processor(ProcessorMixin):
         images: ImageInput = None,
         bboxes: BboxInput = None,
         num_image_tokens: Optional[int] = 64,
-        add_special_tokens: bool = True,
-        add_bos_token: bool = True,
-        add_eos_token: bool = False,
     ) -> Union[str, List[str]]:
         """Add image and bounding box information to `texts` as image and patch index tokens.
 
@@ -295,13 +298,6 @@ class Kosmos2Processor(ProcessorMixin):
             # Add `<object> <patch_idx_xxxx> <patch_idx_yyy> </object>` after `<phrase> phrase text </phrase>`
             text = self._insert_patch_index_tokens(text, bboxes)
             text = self._add_remove_spaces_around_tag_tokens(text)
-
-            if add_special_tokens:
-                if add_bos_token:
-                    text = f"{self.tokenizer.bos_token}{text}"
-                if add_eos_token:
-                    text = f"{text}{self.tokenizer.eos_token}"
-
             return text
 
         # make batch to simplify processing logic
