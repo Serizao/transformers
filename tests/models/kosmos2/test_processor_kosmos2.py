@@ -170,7 +170,7 @@ class Kosmos2ProcessorTest(unittest.TestCase):
     def test_full_processor(self):
 
         # TODO: add to the official repo.
-        url = "https://huggingface.co/ydshieh/kosmos-2-patch14-224/resolve/main/two_dogs.jpg"
+        url = "https://huggingface.co/ydshieh/temp-testing-kosmos-2/resolve/main/two_dogs.jpg"
 
         processor = Kosmos2Processor.from_pretrained("ydshieh/temp-testing-kosmos-2")
 
